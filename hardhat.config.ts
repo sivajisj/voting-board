@@ -1,13 +1,12 @@
-import { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox";
+import type { HardhatUserConfig } from "hardhat/config";
+import "@nomicfoundation/hardhat-toolbox-mocha-ethers";
 
 const config: HardhatUserConfig = {
   solidity: "0.8.24",
   networks: {
- localhost: {
-  type: "http",
-  url: "http://127.0.0.1:8545",
-},
+    localhost: {
+      url: "http://127.0.0.1:8545",
+    },
   },
   paths: {
     sources: "./contracts",

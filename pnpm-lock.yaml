@@ -11,6 +11,9 @@ importers:
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
+      dotenv:
+        specifier: ^17.4.2
+        version: 17.4.2
       ethers:
         specifier: ^6.16.0
         version: 6.16.0
@@ -36,15 +39,9 @@ importers:
       '@eslint/eslintrc':
         specifier: ^3.3.5
         version: 3.3.5
-      '@nomicfoundation/hardhat-ethers':
-        specifier: ^4.0.13
-        version: 4.0.13(hardhat@3.8.0)
       '@nomicfoundation/hardhat-ignition':
         specifier: ^3.1.7
         version: 3.1.7(@nomicfoundation/hardhat-verify@3.0.19(hardhat@3.8.0))(hardhat@3.8.0)
-      '@nomicfoundation/hardhat-toolbox':
-        specifier: ^7.0.0
-        version: 7.0.0
       '@nomicfoundation/hardhat-toolbox-mocha-ethers':
         specifier: ^3.0.7
         version: 3.0.7(b7e9ae1fc972a5375a8effd2dfcefd42)
@@ -99,6 +96,9 @@ importers:
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@22.19.20)(typescript@6.0.3)
+      tsx:
+        specifier: ^4.22.4
+        version: 4.22.4
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -849,9 +849,6 @@ packages:
       ethers: ^6.14.0
       hardhat: ^3.8.0
       mocha: ^11.0.0
-
-  '@nomicfoundation/hardhat-toolbox@7.0.0':
-    resolution: {integrity: sha512-pMoxUU0WWxXv5zkE6mm3JZcvLN94TCax+NVZv5TMscnfwQ42lm+qEAnNxuGNneFbo8JGbHu1B6aEzV08bhmI3w==}
 
   '@nomicfoundation/hardhat-typechain@3.1.1':
     resolution: {integrity: sha512-2+G5L6RPNVpdQtr2nqNOv/qnNNo9GNmJ5V/w2ozJnApEdMxyLiEOOcVcFtZIFQ6Un2clzMph2HbkSwaIT7buEQ==}
@@ -1735,6 +1732,10 @@ packages:
   doctrine@2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
     engines: {node: '>=0.10.0'}
+
+  dotenv@17.4.2:
+    resolution: {integrity: sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==}
+    engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -4089,8 +4090,6 @@ snapshots:
       hardhat: 3.8.0
       mocha: 11.7.6
 
-  '@nomicfoundation/hardhat-toolbox@7.0.0': {}
-
   '@nomicfoundation/hardhat-typechain@3.1.1(@nomicfoundation/hardhat-ethers@4.0.13(hardhat@3.8.0))(ethers@6.16.0)(hardhat@3.8.0)(typescript@6.0.3)':
     dependencies:
       '@nomicfoundation/hardhat-errors': 3.0.15
@@ -4936,6 +4935,8 @@ snapshots:
   doctrine@2.1.0:
     dependencies:
       esutils: 2.0.3
+
+  dotenv@17.4.2: {}
 
   dunder-proto@1.0.1:
     dependencies:
