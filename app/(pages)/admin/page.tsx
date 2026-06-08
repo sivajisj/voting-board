@@ -76,7 +76,9 @@ export default function AdminPage() {
     try {
       const signer = await getSigner();
       const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
-      const deadlineTimestamp = Math.floor(new Date(deadline).getTime() / 1000);
+      const deadlineDate = new Date(deadline);
+      const deadlineTimestamp = Math.floor(deadlineDate.getTime() / 1000);
+      console.log("Deadline timestamp:", deadlineTimestamp, "Current:", Math.floor(Date.now() / 1000));
       const tx = await contract.createProposal(title, description, deadlineTimestamp);
       await tx.wait();
 

@@ -124,8 +124,10 @@ export default function VoterPage() {
     }
   };
 
-  if (loading) return <div className="p-8">Loading...</div>;
+const [mounted, setMounted] = useState(false);
+useEffect(() => setMounted(true), []);
 
+if (!mounted || loading) return <div className="p-8">Loading...</div>;
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white shadow px-6 py-4 flex justify-between items-center">
