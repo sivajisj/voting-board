@@ -59,4 +59,6 @@ cache/
 # typescript build
 *.tsbuildinfo
 
+.agents
+.claude.agent
 .claude

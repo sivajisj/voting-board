@@ -83,7 +83,8 @@ See `.env.example` for reference values.
 ## Usage Walkthrough
 
 ### Admin journey
-1. Register at `/register` with role set to Admin
+1. Register at `/register` with role set to Admin Role
+r
 2. Login at `/login`
 3. On the admin dashboard, create a proposal with title, description, and deadline
 4. Register voter wallet addresses using the Register Voter Wallet form
