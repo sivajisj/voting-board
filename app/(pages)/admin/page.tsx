@@ -76,16 +76,26 @@ export default function AdminPage() {
     try {
       const signer = await getSigner();
       const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
-      const deadlineDate = new Date(deadline);
-      const deadlineTimestamp = Math.floor(deadlineDate.getTime() / 1000);
-      console.log("Deadline timestamp:", deadlineTimestamp, "Current:", Math.floor(Date.now() / 1000));
+      const deadlineTimestamp = Math.floor(new Date(deadline).getTime() / 1000);
       const tx = await contract.createProposal(title, description, deadlineTimestamp);
-      await tx.wait();
+      const receipt = await tx.wait();
+
+      let contractProposalId: number | undefined;
+      for (const log of receipt.logs) {
+        try {
+          const parsed = contract.interface.parseLog({ topics: [...log.topics], data: log.data });
+          if (parsed?.name === "ProposalCreated") {
+            contractProposalId = Number(parsed.args.id);
+            break;
+          }
+        } catch { /* not this event */ }
+      }
+      if (contractProposalId === undefined) throw new Error("Could not read proposal ID from contract");
 
       const res = await fetch("/api/proposals", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, description, deadline }),
+        body: JSON.stringify({ title, description, deadline, contractProposalId }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);

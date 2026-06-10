@@ -54,27 +54,17 @@ export async function POST(req: NextRequest) {
     const payload = requireAdmin(req);
     await connectDB();
 
-    const { title, description, deadline } = await req.json();
+    const { title, description, deadline, contractProposalId } = await req.json();
 
-    if (!title || !description || !deadline) {
+    if (!title || !description || !deadline || contractProposalId === undefined) {
       return NextResponse.json(
-        { error: "Title, description and deadline are required" },
+        { error: "Title, description, deadline and contractProposalId are required" },
         { status: 400 }
       );
     }
 
     const deadlineDate = new Date(deadline);
-    if (deadlineDate <= new Date()) {
-      return NextResponse.json(
-        { error: "Deadline must be in the future" },
-        { status: 400 }
-      );
-    }
-
     const deadlineTimestamp = Math.floor(deadlineDate.getTime() / 1000);
-
-    const count = await Proposal.countDocuments();
-    const contractProposalId = count + 1;
 
     const proposal = await Proposal.create({
       title,
@@ -92,7 +82,6 @@ export async function POST(req: NextRequest) {
           _id: proposal._id,
           title: proposal.title,
           contractProposalId: proposal.contractProposalId,
-          deadlineTimestamp,
         },
       },
       { status: 201 }
